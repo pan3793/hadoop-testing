@@ -32,12 +32,20 @@ SELF_DIR="$(cd "$(dirname "$0")"; pwd)"
 
 source "${SELF_DIR}/.env"
 
+# ${BUILD_CMD} \
+#   --build-arg APACHE_MIRROR=${APACHE_MIRROR} \
+#   --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
+#   --file "${SELF_DIR}/centos7-java8/Dockerfile" \
+#   --tag hadoop-testing/centos7-java8:${PROJECT_VERSION} \
+#   "${SELF_DIR}/centos7-java8" $@
+
+
 ${BUILD_CMD} \
   --build-arg APACHE_MIRROR=${APACHE_MIRROR} \
   --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
-  --file "${SELF_DIR}/centos7-java8/Dockerfile" \
-  --tag hadoop-testing/centos7-java8:${PROJECT_VERSION} \
-  "${SELF_DIR}/centos7-java8" $@
+  --file "${SELF_DIR}/ubuntu-focal-java8/Dockerfile" \
+  --tag hadoop-testing/ubuntu-focal-java8:${PROJECT_VERSION} \
+  "${SELF_DIR}/ubuntu-focal-java8" $@
 
 ${BUILD_CMD} \
   --build-arg APACHE_MIRROR=${APACHE_MIRROR} \

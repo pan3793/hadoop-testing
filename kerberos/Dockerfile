@@ -11,15 +11,15 @@
 # limitations under the License.
 
 ARG PROJECT_VERSION
-FROM hadoop-testing/centos7-java8:$PROJECT_VERSION
-
-# INSTALL KERBEROS
-RUN yum install -y krb5-libs krb5-server krb5-workstation && \
-    yum -y clean all && \
-    rm -rf /tmp/* /var/tmp/*
+FROM hadoop-testing/ubuntu-focal-java8:$PROJECT_VERSION
 
 # COPY CONFIGURATION
 COPY ./files /
+
+# INSTALL KERBEROS
+RUN apt-get update -q && \
+    apt-get install -yq krb5-kdc krb5-admin-server krb5-user && \
+    rm -rf /var/lib/apt/lists/*
 
 # CREATE KERBEROS DATABASE
 RUN /usr/sbin/kdb5_util create -s -P password

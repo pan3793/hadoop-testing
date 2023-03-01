@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Set Mirror:
 APACHE_MIRROR=mirrors.cloud.tencent.com/apache
 
