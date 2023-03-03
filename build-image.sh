@@ -41,16 +41,18 @@ source "${SELF_DIR}/.env"
 
 
 ${BUILD_CMD} \
-  --build-arg APACHE_MIRROR=${APACHE_MIRROR} \
-  --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
   --file "${SELF_DIR}/ubuntu-focal-java8/Dockerfile" \
   --tag hadoop-testing/ubuntu-focal-java8:${PROJECT_VERSION} \
   "${SELF_DIR}/ubuntu-focal-java8" $@
 
 ${BUILD_CMD} \
-  --build-arg APACHE_MIRROR=${APACHE_MIRROR} \
-  --build-arg MAVEN_MIRROR=${MAVEN_MIRROR} \
   --build-arg PROJECT_VERSION=${PROJECT_VERSION} \
-  --file "${SELF_DIR}/kerberos/Dockerfile" \
-  --tag hadoop-testing/kerberos:${PROJECT_VERSION} \
-  "${SELF_DIR}/kerberos" $@
+  --file "${SELF_DIR}/kdc/Dockerfile" \
+  --tag hadoop-testing/kdc:${PROJECT_VERSION} \
+  "${SELF_DIR}/kdc" $@
+
+${BUILD_CMD} \
+  --file "${SELF_DIR}/mysql/Dockerfile" \
+  --tag hadoop-testing/mysql:${PROJECT_VERSION} \
+  "${SELF_DIR}/mysql" $@
+
